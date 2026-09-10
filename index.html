@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050506" />
+    <meta
+      name="description"
+      content="XBear Media — event production, festival management, and high-impact coverage. The pulse of live experience, where vision meets the stage."
+    />
+    <meta property="og:title" content="XBear Media — The Pulse of Live Experience" />
+    <meta
+      property="og:description"
+      content="Concerts, festivals, and rooms built to hold a crowd. Stage, sound, light, and aftermovies — crafted in Konya."
+    />
+    <meta property="og:image" content="/assets/images/eyes-poster.jpg" />
+    <meta property="og:type" content="website" />
+    <title>XBear Media — The Pulse of Live Experience</title>
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/images/favicon.png" />
+    <link rel="preload" as="image" href="/assets/images/eyes-poster.jpg" />
+    <link rel="preload" as="video" href="/assets/eyes-project-website.mp4" type="video/mp4" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;800;900&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#vault">Skip to events</a>
+
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="nav" id="nav">
+      <a class="nav-brand" href="#top" aria-label="XBear Media home">
+        <img src="/assets/images/logo.png" alt="XBear Event-Media" class="nav-logo" />
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="#vault">Live Events</a>
+        <a href="#stage">Stage &amp; Production</a>
+        <a href="#media">Media</a>
+        <button type="button" class="nav-contact" data-open-drawer>Contact</button>
+      </nav>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <a href="#vault">Live Events</a>
+      <a href="#stage">Stage &amp; Production</a>
+      <a href="#media">Media</a>
+      <button type="button" data-open-drawer>Contact</button>
+    </div>
+
+    <div class="stage-canvas-wrap" id="stageCanvasWrap" aria-hidden="true">
+      <canvas id="stageCanvas"></canvas>
+    </div>
+
+    <main id="top">
+      <section class="gateway" id="gateway">
+        <div class="gateway-pin" id="gatewayPin">
+          <div class="hero-media">
+            <img
+              class="hero-poster"
+              src="/assets/images/eyes-poster.jpg"
+              alt=""
+              width="1920"
+              height="1080"
+              decoding="sync"
+            />
+            <video
+              id="irisVideo"
+              class="hero-video"
+              muted
+              playsinline
+              preload="auto"
+              poster="/assets/images/eyes-poster.jpg"
+              disablepictureinpicture
+            >
+              <source src="/assets/eyes-project-website.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="hero-veil" data-hero-fade aria-hidden="true"></div>
+
+          <div class="hero-slate" data-hero-fade>
+            <span>CAM A · IRIS 01</span>
+            <span>24 FPS · 16:9</span>
+            <span>HELD — WAITING FOR SCROLL</span>
+          </div>
+
+          <div class="hero-copy" data-hero-disperse>
+            <p class="hero-kicker">XBear Event-Media · Konya</p>
+            <h1 class="hero-title">
+              <span class="hero-line">Witness the</span>
+              <span class="hero-line hero-line--pulse">Pulse</span>
+              <span class="hero-line">of Live Experience</span>
+            </h1>
+            <p class="hero-lede">
+              Where vision meets the stage. Concerts, festivals, and rooms built to hold a crowd —
+              then cut, mixed, and sent back into the night as aftermovies.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-solid" href="#stage" id="enterArena">Enter the Arena</a>
+              <a class="btn btn-ghost" href="#vault">Explore Events</a>
+            </div>
+          </div>
+
+          <div class="scroll-cue" data-hero-fade>
+            <span>Scroll to enter</span>
+            <i></i>
+          </div>
+        </div>
+      </section>
+
+      <section class="stage" id="stage">
+        <div class="stage-pin">
+          <div class="stage-copy">
+            <p class="eyebrow">Stage Rig · Brand DNA</p>
+            <h2 class="stage-heading">The house lights drop.<br />The structure holds.</h2>
+            <p class="stage-lede">
+              A production language built for the moment the room tips — truss, beam, and signal
+              working as one instrument.
+            </p>
+            <ul class="cues" id="cues">
+              <li class="cue is-on" data-cue="0">
+                <span class="cue-id">LX 01</span>
+                <span class="cue-name">Concerts &amp; Festivals</span>
+                <span class="cue-note">Lineups, crowd flow, the long night from load-in to last song.</span>
+              </li>
+              <li class="cue" data-cue="1">
+                <span class="cue-id">LX 02</span>
+                <span class="cue-name">Stage &amp; Sound Engineering</span>
+                <span class="cue-note">Rigs, PA, and light plots that keep the architecture of the show intact.</span>
+              </li>
+              <li class="cue" data-cue="2">
+                <span class="cue-id">LX 03</span>
+                <span class="cue-name">Aftermovies &amp; Media Coverage</span>
+                <span class="cue-note">Cameras in the pit, on the truss, and in the cut — the night, kept.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="vault" id="vault">
+        <div class="vault-head">
+          <p class="eyebrow">Event Vault · Case Studies</p>
+          <h2>Nights we built,<br />rooms we held.</h2>
+          <p>
+            Ten frames from the floor, the boards, and the page — concerts, concept nights,
+            civic route days, and the coverage that follows.
+          </p>
+        </div>
+
+        <article class="spread spread--opener">
+          <figure class="frame frame--hero" data-lightbox>
+            <img src="/assets/images/Xbear7.jpg" alt="Mavigri vocalist in haze, square stage portrait" width="1080" height="1080" />
+            <figcaption>
+              <span>01 · Mavigri</span>
+              <strong>Voice in the haze</strong>
+            </figcaption>
+          </figure>
+          <figure class="frame frame--stack" data-lightbox>
+            <img src="/assets/images/Xbear8.jpg" alt="Keyboardist on stage with heart-shaped glasses, blue backlight" width="1080" height="1440" />
+            <figcaption>
+              <span>02 · Mavigri</span>
+              <strong>Keys, mics, the backline</strong>
+            </figcaption>
+          </figure>
+        </article>
+
+        <div class="ribbon" aria-hidden="true">
+          <div class="ribbon-track">
+            <img src="/assets/images/Xbear3.jpeg" alt="" />
+            <img src="/assets/images/Xbear4.jpeg" alt="" />
+            <img src="/assets/images/Xbear2.jpeg" alt="" />
+            <img src="/assets/images/Xbear1.jpeg" alt="" />
+            <img src="/assets/images/Xbear0.jpeg" alt="" />
+            <img src="/assets/images/Xbearmedia12.png" alt="" />
+            <img src="/assets/images/Xbear7.jpg" alt="" />
+            <img src="/assets/images/Xbear8.jpg" alt="" />
+            <img src="/assets/images/Xbear6.jpeg" alt="" />
+            <img src="/assets/images/Xbear5.jpeg" alt="" />
+            <img src="/assets/images/Xbear3.jpeg" alt="" />
+            <img src="/assets/images/Xbear4.jpeg" alt="" />
+            <img src="/assets/images/Xbear2.jpeg" alt="" />
+            <img src="/assets/images/Xbear1.jpeg" alt="" />
+            <img src="/assets/images/Xbear0.jpeg" alt="" />
+            <img src="/assets/images/Xbearmedia12.png" alt="" />
+            <img src="/assets/images/Xbear7.jpg" alt="" />
+            <img src="/assets/images/Xbear8.jpg" alt="" />
+            <img src="/assets/images/Xbear6.jpeg" alt="" />
+            <img src="/assets/images/Xbear5.jpeg" alt="" />
+          </div>
+        </div>
+
+        <article class="spread spread--diptych">
+          <div class="spread-copy">
+            <p class="eyebrow">03–04 · Wegh</p>
+            <h3>Beams over the room. A body in the pocket.</h3>
+            <p>
+              Moving heads on the truss, bottles glowing in the back bar, a crowd close enough to
+              feel the kick. This is club-scale production: tight, loud, and fully lit.
+            </p>
+          </div>
+          <figure class="frame" data-lightbox>
+            <img src="/assets/images/Xbear2.jpeg" alt="Wegh performing under a followspot with a bottle wall behind the stage" width="1800" height="2700" />
+          </figure>
+          <figure class="frame" data-lightbox>
+            <img src="/assets/images/Xbear3.jpeg" alt="Wegh leaning into the crowd under cyan stage lasers and a lighting truss" width="1800" height="2700" />
+          </figure>
+        </article>
+
+        <article class="spread spread--split">
+          <figure class="frame frame--wide" data-lightbox>
+            <img src="/assets/images/Xbear4.jpeg" alt="Audience in amber concert light, coffee on the table, phones raised behind" width="1800" height="2700" />
+            <figcaption>
+              <span>05 · Floor</span>
+              <strong>The room, mid-song</strong>
+            </figcaption>
+          </figure>
+          <figure class="frame" data-lightbox>
+            <img src="/assets/images/Xbear1.jpeg" alt="Pioneer DJ decks in the foreground, dancers under string lights at CoffeeClub" width="1242" height="1700" />
+            <figcaption>
+              <span>06 · Afrobear</span>
+              <strong>Decks, string lights, the floor</strong>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="spread spread--civic">
+          <figure class="frame frame--full" data-lightbox>
+            <img src="/assets/images/Xbear0.jpeg" alt="Crowd gathered at Anıtkabir during an XBear Ankara route day" width="1242" height="1495" />
+            <figcaption>
+              <span>07 · Ankara Route</span>
+              <strong>A civic square, a full house</strong>
+              <p>Not every stage is a stage. Some nights the architecture is already there — we bring the people.</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="spread spread--desk" id="media">
+          <figure class="frame frame--team" data-lightbox>
+            <img src="/assets/images/Xbear6.jpeg" alt="XBear team at TEDx Selçuk Üniversitesi in front of a Team Work backdrop" width="1242" height="1522" />
+            <figcaption>
+              <span>08 · TEDx Selçukuni</span>
+              <strong>Summit energy, campus scale</strong>
+            </figcaption>
+          </figure>
+          <figure class="frame frame--press" data-lightbox>
+            <img src="/assets/images/Xbear5.jpeg" alt="Newspaper clipping: XBear Event-Media featured for bringing new breath to the events sector" width="2058" height="3504" />
+            <figcaption>
+              <span>09 · Press</span>
+              <strong>The work, on the page</strong>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="spread spread--closer">
+          <figure class="frame frame--poster" data-lightbox>
+            <img src="/assets/images/Xbearmedia12.png" alt="BLOK3 on a festival stage under orange moving heads, XBear mark in the corner" width="1080" height="1350" />
+            <figcaption>
+              <span>10 · Production still</span>
+              <strong>BLOK3 — truss, crowd, the cut</strong>
+              <p>Festival architecture in a single frame: steel overhead, a pointed cue, the room behind the artist.</p>
+            </figcaption>
+          </figure>
+        </article>
+      </section>
+
+      <section class="pillars" id="pillars">
+        <div class="pillars-head">
+          <p class="eyebrow">Production Pillars</p>
+          <h2>Three wings.<br />One show.</h2>
+        </div>
+        <div class="pillars-grid">
+          <article class="pillar">
+            <span class="pillar-id">A</span>
+            <h3>Festival Organization</h3>
+            <p>
+              Programming, site flow, and the long arc of a public night — from the first barrier
+              to the last encore. Built for outdoor grounds and indoor rooms that need to feel
+              inevitable.
+            </p>
+          </article>
+          <article class="pillar">
+            <span class="pillar-id">B</span>
+            <h3>Stage / Sound / Light</h3>
+            <p>
+              Truss, PA, and plots that read as architecture. We treat the rig as part of the
+              image: beams you can photograph, a mix the room can stand inside.
+            </p>
+          </article>
+          <article class="pillar">
+            <span class="pillar-id">C</span>
+            <h3>Media &amp; Aftermovies</h3>
+            <p>
+              Coverage that keeps the temperature of the night. Multi-cam floors, aftermovies,
+              and stills that hold the haze, the truss, and the faces in the front row.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="backstage" id="backstage">
+        <div class="backstage-inner">
+          <p class="eyebrow">Backstage Access · Colophon</p>
+          <h2>The next cue is yours.</h2>
+          <p class="backstage-lede">
+            Dates, rooms, and the kind of night you want held. Send a note — we answer on WhatsApp
+            and keep the conversation on the floor, not in a ticket queue.
+          </p>
+          <div class="backstage-actions">
+            <button type="button" class="btn btn-solid" data-open-drawer>Open Inquiry</button>
+            <a class="btn btn-ghost" href="https://instagram.com/xbearevent" target="_blank" rel="noopener">Event calendar · @xbearevent</a>
+          </div>
+          <dl class="channels">
+            <div>
+              <dt>WhatsApp</dt>
+              <dd><a href="https://wa.me/905064781490">0506 478 14 90</a></dd>
+            </div>
+            <div>
+              <dt>Instagram</dt>
+              <dd>
+                <a href="https://instagram.com/xbearevent" target="_blank" rel="noopener">@xbearevent</a>
+                <a href="https://instagram.com/xbearmedia" target="_blank" rel="noopener">@xbearmedia</a>
+              </dd>
+            </div>
+            <div>
+              <dt>Base</dt>
+              <dd>Konya, Türkiye</dd>
+            </div>
+          </dl>
+        </div>
+        <footer class="colophon">
+          <img src="/assets/images/logo.png" alt="XBear Event-Media" class="colophon-logo" />
+          <p>XBear Event-Media. Live production, festival craft, and the footage that remains.</p>
+          <p class="colophon-meta">© <span id="year"></span> · The Pulse of Live Experience</p>
+        </footer>
+      </section>
+    </main>
+
+    <aside class="drawer" id="drawer" aria-hidden="true">
+      <div class="drawer-panel" role="dialog" aria-labelledby="drawerTitle">
+        <button class="drawer-close" type="button" data-close-drawer aria-label="Close inquiry">×</button>
+        <p class="eyebrow">Inquiry</p>
+        <h2 id="drawerTitle">Book a production conversation</h2>
+        <form id="inquiryForm">
+          <label>
+            Name
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+          <label>
+            Event type
+            <select name="type" required>
+              <option value="">Select</option>
+              <option>Concert</option>
+              <option>Festival</option>
+              <option>Corporate summit</option>
+              <option>Media / aftermovie</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>
+            Date
+            <input type="date" name="date" />
+          </label>
+          <label>
+            The night you want held
+            <textarea name="message" rows="4" required placeholder="Room, scale, and what should still be ringing after."></textarea>
+          </label>
+          <button class="btn btn-solid" type="submit">Send via WhatsApp</button>
+        </form>
+        <p class="drawer-note">Opens WhatsApp with your note prefilled. No spam, no ticket bots.</p>
+      </div>
+    </aside>
+
+    <dialog class="lightbox" id="lightbox">
+      <button type="button" class="lightbox-close" aria-label="Close">×</button>
+      <img alt="" />
+    </dialog>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
