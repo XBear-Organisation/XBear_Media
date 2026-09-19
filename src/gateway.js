@@ -4,6 +4,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export function initGateway({ video, reducedMotion, onBlack, onLeaveBlack }) {
+  if (!video) return { destroy() {} };
+
   video.pause();
   video.muted = true;
   video.defaultMuted = true;
@@ -30,7 +32,7 @@ export function initGateway({ video, reducedMotion, onBlack, onLeaveBlack }) {
       video.pause();
       video.currentTime = t;
     } catch {
-      /* autoplay policy — seek still works once metadata is ready */
+      /* autoplay policy */
     }
   };
   window.addEventListener("pointerdown", prime, { once: true, passive: true });
@@ -44,7 +46,7 @@ export function initGateway({ video, reducedMotion, onBlack, onLeaveBlack }) {
   let inBlack = false;
 
   const setBlack = (value) => {
-    pin.classList.toggle("is-through", value);
+    pin?.classList.toggle("is-through", value);
     if (value === inBlack) return;
     inBlack = value;
     if (value) onBlack?.();
@@ -107,16 +109,9 @@ export function initGateway({ video, reducedMotion, onBlack, onLeaveBlack }) {
         filter: `blur(${disperse * 10}px)`,
       });
 
-      nav.classList.toggle("is-solid", p > 0.12);
+      nav?.classList.toggle("is-solid", p > 0.12);
       setBlack(p >= 0.91);
     },
-  });
-
-  document.getElementById("enterArena")?.addEventListener("click", (e) => {
-    e.preventDefault();
-    const stage = document.getElementById("stage");
-    if (!stage) return;
-    window.scrollTo({ top: stage.getBoundingClientRect().top + window.scrollY, behavior: "smooth" });
   });
 
   return {
