@@ -548,7 +548,7 @@ const BRANDS = {
     info: "Açıklama buraya. Ürün, mekân, ton.",
     about: "Hakkında metni buraya. Kahve markası için çekim ve still.",
     photo: "",
-    work: "/#work-mackbear",
+    work: "index.html#work-mackbear",
   },
   mypoint: {
     name: "MYPOINT",
@@ -556,7 +556,7 @@ const BRANDS = {
     info: "Açıklama buraya. Bar, ürün, kadro.",
     about: "Hakkında metni buraya. Mekânın kendi dili.",
     photo: "",
-    work: "/#work-mypoint",
+    work: "index.html#work-mypoint",
   },
   extrablatt: {
     name: "Extrablatt",
@@ -564,7 +564,7 @@ const BRANDS = {
     info: "Açıklama buraya. Restoran kimliği.",
     about: "Hakkında metni buraya. Tabak, salon, tempo.",
     photo: "",
-    work: "/#work-extrablatt",
+    work: "index.html#work-extrablatt",
   },
   lafinkas: {
     name: "LaFinkas",
@@ -572,7 +572,7 @@ const BRANDS = {
     info: "Açıklama buraya. Mekân, ışık, marka.",
     about: "Hakkında metni buraya. Gece çekiminin durduğu yer.",
     photo: "",
-    work: "/#work-lafinkas",
+    work: "index.html#work-lafinkas",
   },
   lupen: {
     name: "Lupen",
@@ -580,7 +580,7 @@ const BRANDS = {
     info: "Açıklama buraya. Stüdyodan sete.",
     about: "Hakkında metni buraya. Kamera, ışık, kesim.",
     photo: "",
-    work: "/#work-lupen",
+    work: "index.html#work-lupen",
   },
   blok3: {
     name: "BLOK3",
@@ -588,7 +588,7 @@ const BRANDS = {
     info: "Açıklama buraya. Işık, truss, kadro.",
     about: "Hakkında metni buraya. Still olarak bırakılan sahne.",
     photo: "",
-    work: "/#work-blok3",
+    work: "index.html#work-blok3",
   },
 };
 
@@ -655,7 +655,7 @@ function fillBrand(id) {
       photoPh.hidden = false;
     }
   }
-  if (work) work.href = data.work || "/#isler";
+  if (work) work.href = data.work || "index.html#isler";
 }
 
 function openBrand(btn) {

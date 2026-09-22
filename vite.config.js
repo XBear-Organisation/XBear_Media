@@ -1,4 +1,5 @@
-import { defineConfig } from 'vite';
+import { resolve } from "node:path";
+import { defineConfig } from "vite";
 
 export default defineConfig({
   server: {
@@ -8,5 +9,13 @@ export default defineConfig({
   preview: {
     host: true,
     port: 4173,
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        main: resolve(import.meta.dirname, "index.html"),
+        markalar: resolve(import.meta.dirname, "markalar.html"),
+      },
+    },
   },
 });
