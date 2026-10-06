@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Kardelen Kafe">
+  <rect width="240" height="240" fill="#0c0c0e"/>
+  <rect x="18" y="18" width="204" height="204" fill="none" stroke="#ede8df" stroke-opacity="0.28" stroke-width="1.5"/>
+  <text x="120" y="128" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="54" fill="#ede8df" letter-spacing="2">KK</text>
+</svg>

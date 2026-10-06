@@ -542,53 +542,311 @@ document.addEventListener("fullscreenchange", () => {
 window.addEventListener("load", () => ScrollTrigger.refresh());
 
 const BRANDS = {
-  mackbear: {
-    name: "Mackbear",
-    tag: "Kahve · Sinematik + still",
-    info: "Açıklama buraya. Ürün, mekân, ton.",
-    about: "Hakkında metni buraya. Kahve markası için çekim ve still.",
+  extrablatt: {
+    name: "Extrablatt",
+    tag: "Yemek ve mekân",
+    info: "Restoran kimliği. Sinematik + still.",
+    about: "Konya. Yemek ve mekân çekimleri.",
     photo: "",
-    work: "index.html#work-mackbear",
+    logo: "/assets/images/brands/extrablatt.svg",
+    work: "index.html#work-extrablatt",
   },
   mypoint: {
     name: "MYPOINT",
     tag: "Mekân filmi",
-    info: "Açıklama buraya. Bar, ürün, kadro.",
-    about: "Hakkında metni buraya. Mekânın kendi dili.",
+    info: "Bar, ürün, kadro — aynı dil.",
+    about: "Pub & bistro. Mekân filmi ve still.",
     photo: "",
+    logo: "/assets/images/brands/mypoint.png",
     work: "index.html#work-mypoint",
   },
-  extrablatt: {
-    name: "Extrablatt",
-    tag: "Yemek ve mekân",
-    info: "Açıklama buraya. Restoran kimliği.",
-    about: "Hakkında metni buraya. Tabak, salon, tempo.",
+  mackbear: {
+    name: "Mackbear",
+    tag: "Kahve · Sinematik + still",
+    info: "Ürün, mekân, ton.",
+    about: "Mackbear Coffee Co. Marka filmi ve kampanya kareleri.",
     photo: "",
-    work: "index.html#work-extrablatt",
+    logo: "/assets/images/brands/mackbear.png",
+    work: "index.html#work-mackbear",
   },
-  lafinkas: {
-    name: "LaFinkas",
-    tag: "Gece çekimi",
-    info: "Açıklama buraya. Mekân, ışık, marka.",
-    about: "Hakkında metni buraya. Gece çekiminin durduğu yer.",
+  atiker: {
+    name: "Atiker",
+    tag: "Kurumsal",
+    info: "Holding ve marka görselleri.",
+    about: "Atiker Holding. Konya.",
     photo: "",
-    work: "index.html#work-lafinkas",
+    logo: "/assets/images/brands/atiker.png",
+    work: "index.html#isler",
+  },
+  sikintiyokvip: {
+    name: "Sıkıntı Yok VIP",
+    tag: "Cafe",
+    info: "Mekân ve gece tonu.",
+    about: "Sıkıntı Yok Cafe / VIP. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/sikintiyokvip.svg",
+    work: "index.html#isler",
+  },
+  furyaglobal: {
+    name: "Furya Global",
+    tag: "Kahve",
+    info: "Marka ve ürün çekimi.",
+    about: "Furya Kahve / Furya Global. Selçuklu, Konya.",
+    photo: "",
+    logo: "/assets/images/brands/furyaglobal.png",
+    work: "index.html#isler",
+  },
+  romeojuliet: {
+    name: "Romeo Juliet",
+    tag: "Mekân",
+    info: "Mekân stilleri.",
+    about: "Romeo Juliet. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/romeojuliet.svg",
+    work: "index.html#isler",
+  },
+  uludagdeep: {
+    name: "Uludağ Deep",
+    tag: "Mekân",
+    info: "Atmosfer ve marka kareleri.",
+    about: "Uludağ Deep. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/uludagdeep.svg",
+    work: "index.html#isler",
+  },
+  kardelenkafe: {
+    name: "Kardelen Kafe",
+    tag: "Kafe",
+    info: "Mekân ve ürün.",
+    about: "Kardelen Kafe. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/kardelenkafe.svg",
+    work: "index.html#isler",
+  },
+  ozumuz: {
+    name: "Özümüz",
+    tag: "Marka",
+    info: "Kimlik ve içerik.",
+    about: "Özümüz. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/ozumuz.svg",
+    work: "index.html#isler",
+  },
+  masterchicken: {
+    name: "Master Chicken",
+    tag: "Yemek",
+    info: "Ürün ve mekân.",
+    about: "Master Chicken. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/masterchicken.svg",
+    work: "index.html#isler",
+  },
+  saraypide: {
+    name: "Saraypide Börek",
+    tag: "Yemek",
+    info: "Ürün ve mekân stilleri.",
+    about: "Saraypide Börek. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/saraypide.svg",
+    work: "index.html#isler",
+  },
+  kebokonya: {
+    name: "Kebo Konya",
+    tag: "Yemek",
+    info: "Dürüm ve mekân.",
+    about: "Kebo Konya. Hatay usulü döner.",
+    photo: "",
+    logo: "/assets/images/brands/kebokonya.png",
+    work: "index.html#isler",
+  },
+  otofia: {
+    name: "Otofia Fiat Servisi",
+    tag: "Otomotiv",
+    info: "Servis ve marka görselleri.",
+    about: "Otofia — Konya Fiat servis. Selçuklu.",
+    photo: "",
+    logo: "/assets/images/brands/otofia.png",
+    work: "index.html#isler",
+  },
+  cntoptan: {
+    name: "CN Toptan",
+    tag: "Ticaret",
+    info: "Marka ve içerik.",
+    about: "CN Toptan. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/cntoptan.svg",
+    work: "index.html#isler",
+  },
+  hsokey: {
+    name: "HS Okey Salonu",
+    tag: "Oyun salonu",
+    info: "Mekân çekimi.",
+    about: "HS Okey Salonu. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/hsokey.svg",
+    work: "index.html#isler",
+  },
+  monookey: {
+    name: "Mono Okey Salonu",
+    tag: "Oyun salonu",
+    info: "Mekân çekimi.",
+    about: "Mono Okey Salonu. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/monookey.svg",
+    work: "index.html#isler",
+  },
+  stickwaffle: {
+    name: "Stick Waffle",
+    tag: "Tatlı",
+    info: "Ürün ve mekân.",
+    about: "Stick Waffle. Selçuklu, Konya.",
+    photo: "",
+    logo: "/assets/images/brands/stickwaffle.svg",
+    work: "index.html#isler",
+  },
+  prague: {
+    name: "Prague Tatlıcı",
+    tag: "Tatlı",
+    info: "Ürün çekimi.",
+    about: "Prague Tatlıcı. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/prague.svg",
+    work: "index.html#isler",
+  },
+  fadimnur: {
+    name: "Fadim Nur Beauty",
+    tag: "Güzellik",
+    info: "Salon ve marka.",
+    about: "Fadim Nur Beauty Güzellik Merkezi. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/fadimnur.svg",
+    work: "index.html#isler",
+  },
+  coffeelands: {
+    name: "Coffeeland",
+    tag: "Kahve",
+    info: "Mekân ve ürün.",
+    about: "Coffeeland. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/coffeelands.png",
+    work: "index.html#isler",
+  },
+  extrasocial: {
+    name: "Extrasocial",
+    tag: "Sosyal",
+    info: "İçerik ve kampanya.",
+    about: "Extrasocial. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/extrasocial.svg",
+    work: "index.html#isler",
+  },
+  azrahaliperde: {
+    name: "Azra Halı Perde",
+    tag: "Ev tekstili",
+    info: "Ürün ve mağaza.",
+    about: "Azra Halı Perde. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/azrahaliperde.svg",
+    work: "index.html#isler",
+  },
+  animalscafe: {
+    name: "Animals Cafe Bistro",
+    tag: "Cafe · Bistro",
+    info: "Mekân filmi.",
+    about: "Animals Cafe Bistro. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/animalscafe.svg",
+    work: "index.html#isler",
+  },
+  cafepub: {
+    name: "Cafe Pub",
+    tag: "Cafe · Pub",
+    info: "Mekân ve gece.",
+    about: "Cafe Pub. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/cafepub.svg",
+    work: "index.html#isler",
   },
   lupen: {
     name: "Lupen",
     tag: "Sinematik",
-    info: "Açıklama buraya. Stüdyodan sete.",
-    about: "Hakkında metni buraya. Kamera, ışık, kesim.",
+    info: "Stüdyodan sete.",
+    about: "Lupen. Kamera, ışık, kesim.",
     photo: "",
+    logo: "/assets/images/brands/lupen.svg",
     work: "index.html#work-lupen",
   },
-  blok3: {
-    name: "BLOK3",
-    tag: "Sahne stilleri",
-    info: "Açıklama buraya. Işık, truss, kadro.",
-    about: "Hakkında metni buraya. Still olarak bırakılan sahne.",
+  hconcept: {
+    name: "H Concept",
+    tag: "Konsept",
+    info: "Marka ve mekân.",
+    about: "H Concept. Konya.",
     photo: "",
-    work: "index.html#work-blok3",
+    logo: "/assets/images/brands/hconcept.svg",
+    work: "index.html#isler",
+  },
+  cetinaccessories: {
+    name: "Çetin Accessories",
+    tag: "Aksesuar",
+    info: "Ürün stilleri.",
+    about: "Çetin Accessories. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/cetinaccessories.svg",
+    work: "index.html#isler",
+  },
+  kafamcorba: {
+    name: "Kafam Çorba",
+    tag: "Yemek",
+    info: "Ürün ve mekân.",
+    about: "Kafam Çorba. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/kafamcorba.svg",
+    work: "index.html#isler",
+  },
+  gemirestoran: {
+    name: "Gemi Restoran",
+    tag: "Restoran",
+    info: "Mekân sinematiği.",
+    about: "Gemi Restoran. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/gemirestoran.svg",
+    work: "index.html#isler",
+  },
+  madenfightclub: {
+    name: "Maden Fight Club",
+    tag: "Spor",
+    info: "Salon ve antrenman.",
+    about: "Maden Fight Club. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/madenfightclub.svg",
+    work: "index.html#isler",
+  },
+  karmapizza: {
+    name: "Karma Pizza",
+    tag: "Yemek",
+    info: "Ürün ve mekân.",
+    about: "Karma Pizza. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/karmapizza.svg",
+    work: "index.html#isler",
+  },
+  xbearevent: {
+    name: "XBear Event",
+    tag: "Etkinlik",
+    info: "Organizasyon ve sahne.",
+    about: "XBear Event. Konya merkezli etkinlik ve organizasyon.",
+    photo: "",
+    logo: "/assets/images/brands/xbearevent.png",
+    work: "index.html#isler",
+  },
+  amarissa: {
+    name: "Amarissa",
+    tag: "Marka",
+    info: "Kimlik ve içerik.",
+    about: "Amarissa. Konya.",
+    photo: "",
+    logo: "/assets/images/brands/amarissa.svg",
+    work: "index.html#isler",
   },
 };
 
@@ -643,16 +901,19 @@ function fillBrand(id) {
   if (info) info.textContent = data.info || "Açıklama buraya.";
   if (about) about.textContent = data.about || "Hakkında metni buraya.";
   if (photo && photoPh) {
-    if (data.photo) {
+    const visual = data.photo || data.logo || "";
+    if (visual) {
       photo.hidden = false;
-      photo.src = data.photo;
+      photo.src = visual;
       photo.alt = data.name;
       photoPh.hidden = true;
+      photo.classList.toggle("is-logo", !data.photo && Boolean(data.logo));
     } else {
       photo.hidden = true;
       photo.removeAttribute("src");
       photo.alt = "";
       photoPh.hidden = false;
+      photo.classList.remove("is-logo");
     }
   }
   if (work) work.href = data.work || "index.html#isler";
@@ -692,13 +953,6 @@ function closeBrand() {
     brandBusy = false;
     brandAnim = null;
   };
-}
-
-const brandGrid = document.querySelector(".brand-grid");
-if (brandGrid) {
-  const wait = `<div class="brand is-wait"><span class="brand-slot"><span class="brand-ph">Logo</span></span><span class="brand-name">Yeni marka</span></div>`;
-  const need = 100 - brandGrid.querySelectorAll(".brand").length;
-  if (need > 0) brandGrid.insertAdjacentHTML("beforeend", wait.repeat(need));
 }
 
 document.querySelectorAll("[data-brand]").forEach((btn) => {

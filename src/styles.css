@@ -1225,14 +1225,18 @@ h2 {
   width: 72%;
   height: 72%;
   object-fit: contain;
+  filter: none;
 }
 
 .brand-name {
   font-family: var(--font-mono);
   font-size: 0.62rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--steel);
+  text-align: center;
+  max-width: 100%;
+  line-height: 1.35;
 }
 
 .brand:hover .brand-slot,
@@ -1300,6 +1304,12 @@ h2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.brand-pop-media img.is-logo {
+  object-fit: contain;
+  padding: 2.4rem;
+  background: #0c0c0e;
 }
 
 .brand-ph--photo {
