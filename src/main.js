@@ -11,7 +11,9 @@ const liteFrame = lite?.querySelector(".lite-frame");
 const liteVideo = liteFrame?.querySelector("video");
 const litePlay = lite?.querySelector("[data-lite-play]");
 const liteSeek = lite?.querySelector("[data-lite-seek]");
+const liteFs = lite?.querySelector("[data-lite-fs]");
 let liteSeeking = false;
+let liteLandscape = false;
 
 const playing = new Set();
 
@@ -50,9 +52,18 @@ const boardFill = document.getElementById("boardFill");
 const boardStage = document.getElementById("boardStage");
 const boardsHold = document.getElementById("isler");
 let boardIndex = 0;
+let gatewayRevealed = false;
 
 function setBoardLive(on) {
   boardStage?.classList.toggle("is-live", on);
+}
+
+function syncBoardLive() {
+  const on = gatewayRevealed || holdInView();
+  setBoardLive(on);
+  if (!on) {
+    boards.forEach((board) => board.querySelectorAll("video").forEach((video) => video.pause()));
+  }
 }
 
 function showBoard(next) {
@@ -118,16 +129,21 @@ const iris = document.getElementById("irisVideo");
 initGateway({
   video: iris,
   reducedMotion: reduce,
-  onBlack: () => {
-    setBoardLive(true);
+  onReveal: () => {
+    gatewayRevealed = true;
+    syncBoardLive();
     const video = boards[boardIndex]?.querySelector("video");
     if (video) playOne(video);
   },
-  onLeaveBlack: () => {
-    if (holdInView()) return;
-    setBoardLive(false);
-    boards.forEach((board) => board.querySelectorAll("video").forEach((video) => video.pause()));
+  onHide: () => {
+    gatewayRevealed = false;
+    syncBoardLive();
   },
+  onBlack: () => {
+    gatewayRevealed = true;
+    syncBoardLive();
+  },
+  onLeaveBlack: () => {},
 });
 
 if (!reduce && boardsHold) {
@@ -135,14 +151,10 @@ if (!reduce && boardsHold) {
     trigger: boardsHold,
     start: "top bottom",
     end: "bottom top",
-    onToggle: (self) => {
-      if (self.isActive) setBoardLive(true);
-      else if (!document.getElementById("gatewayPin")?.classList.contains("is-through")) {
-        setBoardLive(false);
-      }
-    },
+    onToggle: () => syncBoardLive(),
   });
 } else {
+  gatewayRevealed = true;
   setBoardLive(true);
 }
 
@@ -186,6 +198,20 @@ let liteOpenedAt = 0;
 let liteToken = 0;
 let filmTimer = 0;
 let liteSwitching = false;
+let liteScrollY = 0;
+
+function rememberLiteScroll() {
+  liteScrollY = window.scrollY;
+}
+
+function restoreLiteScroll() {
+  const y = liteScrollY;
+  const apply = () => window.scrollTo({ top: y, left: 0, behavior: "auto" });
+  apply();
+  requestAnimationFrame(apply);
+  window.setTimeout(apply, 0);
+  window.setTimeout(apply, 50);
+}
 
 function syncLitePlay() {
   const paused = !liteVideo || liteVideo.paused;
@@ -260,16 +286,21 @@ async function playLiteVideo(source) {
     return;
   }
   if (token !== liteToken || !lite?.open) return;
-  const startAt = Number(source.currentTime);
-  if (Number.isFinite(startAt) && startAt > 0.05) {
-    try {
-      liteVideo.currentTime = startAt;
-    } catch {
-      /* henüz seek yok */
-    }
-  }
+  // Önizleme videosu sonda (logo kartı) kalmış olabiliyor; lightbox her zaman baştan.
   liteVideo.muted = true;
   try {
+    if (liteVideo.currentTime > 0.05) {
+      liteVideo.currentTime = 0;
+      await new Promise((resolve) => {
+        const done = () => {
+          liteVideo.removeEventListener("seeked", done);
+          resolve();
+        };
+        liteVideo.addEventListener("seeked", done, { once: true });
+        window.setTimeout(resolve, 200);
+      });
+    }
+    if (token !== liteToken || !lite?.open) return;
     await liteVideo.play();
   } catch {
     /* jest yok */
@@ -278,6 +309,7 @@ async function playLiteVideo(source) {
   liteVideo.muted = false;
   syncLiteSeek();
   syncLitePlay();
+  restoreLiteScroll();
 }
 
 function resumePageVideo() {
@@ -317,27 +349,63 @@ function phoneFilm() {
   return window.matchMedia("(max-width: 860px)").matches;
 }
 
-async function enterFilmMode() {
-  if (!lite || filmOn || !phoneFilm()) return;
-  lite.classList.add("is-film");
+function syncFsButton() {
+  if (!liteFs) return;
+  const show = Boolean(lite?.open && lite.classList.contains("is-video") && phoneFilm() && liteLandscape);
+  liteFs.hidden = !show;
+  liteFs.setAttribute("aria-label", filmOn ? "Tam ekrandan çık" : "Tam ekran");
+  liteFs.setAttribute("aria-pressed", filmOn ? "true" : "false");
+  liteFs.textContent = filmOn ? "↙" : "⛶";
+}
+
+async function requestLiteFullscreen() {
+  if (!lite) return false;
   try {
-    if (lite.requestFullscreen) await lite.requestFullscreen();
-    filmOn = document.fullscreenElement === lite;
+    if (lite.requestFullscreen) {
+      await lite.requestFullscreen();
+      return document.fullscreenElement === lite;
+    }
+    if (lite.webkitRequestFullscreen) {
+      await lite.webkitRequestFullscreen();
+      return true;
+    }
   } catch {
-    filmOn = false;
+    /* yok */
   }
-  if (!filmOn) return;
+  try {
+    if (liteVideo?.webkitEnterFullscreen) {
+      liteVideo.webkitEnterFullscreen();
+      return true;
+    }
+  } catch {
+    /* iOS native */
+  }
+  return false;
+}
+
+async function enterFilmMode() {
+  if (!lite || filmOn || !phoneFilm() || !liteLandscape) return;
+  clearFilmTimer();
+  lite.classList.add("is-film");
+  filmOn = true;
+  syncFsButton();
+  const ok = await requestLiteFullscreen();
   try {
     if (screen.orientation?.lock) await screen.orientation.lock("landscape");
   } catch {
-    /* Safari kilidi yok */
+    /* Safari / politika */
   }
+  // Fullscreen API olmasa bile CSS film modu (portrait’ta 90° çeviri) aktif kalır.
+  if (!ok) filmOn = true;
+  syncFsButton();
 }
 
 async function exitFilmMode() {
   if (!lite) return;
+  clearFilmTimer();
   filmOn = false;
   lite.classList.remove("is-film");
+  syncFsButton();
   try {
     screen.orientation?.unlock?.();
   } catch {
@@ -378,13 +446,20 @@ function showLiteItem(index) {
     liteImg.hidden = true;
     liteFrame.hidden = false;
     const portrait = isPortraitVideo(item, source);
+    liteLandscape = !portrait;
     liteFrame.classList.toggle("vid--turn", item.classList.contains("vid--turn") || source.hasAttribute("data-rotate"));
     liteFrame.classList.toggle("vid--portrait", portrait);
     pauseAll();
     if (firstOpen) {
+      rememberLiteScroll();
       lite.showModal();
+      restoreLiteScroll();
       liteOpenedAt = performance.now();
-      if (!portrait) filmTimer = window.setTimeout(() => enterFilmMode(), 350);
+    }
+    if (portrait && filmOn) {
+      exitFilmMode();
+    } else {
+      syncFsButton();
     }
     playLiteVideo(source).finally(() => {
       liteSwitching = false;
@@ -398,6 +473,7 @@ function showLiteItem(index) {
     return;
   }
   liteToken += 1;
+  liteLandscape = false;
   lite.classList.add("is-image");
   lite.classList.remove("is-video");
   if (liteVideo) {
@@ -409,8 +485,12 @@ function showLiteItem(index) {
   liteImg.src = img.currentSrc || img.src;
   liteImg.alt = img.alt || "";
   pauseAll();
+  if (filmOn) exitFilmMode();
+  else syncFsButton();
   if (firstOpen) {
+    rememberLiteScroll();
     lite.showModal();
+    restoreLiteScroll();
     liteOpenedAt = performance.now();
   }
   liteSwitching = false;
@@ -460,7 +540,13 @@ let liteTouchX = null;
 let liteTouchY = 0;
 lite?.addEventListener("touchstart", (event) => {
   const node = event.target;
-  if (node.closest("video") || node.closest(".lite-nav") || node.closest(".lite-x") || node.closest(".lite-bar")) {
+  if (
+    node.closest("video")
+    || node.closest(".lite-nav")
+    || node.closest(".lite-x")
+    || node.closest(".lite-bar")
+    || node.closest(".lite-fs")
+  ) {
     liteTouchX = null;
     return;
   }
@@ -485,6 +571,12 @@ litePlay?.addEventListener("click", (event) => {
   } else {
     liteVideo.pause();
   }
+});
+
+liteFs?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  if (filmOn) exitFilmMode();
+  else enterFilmMode();
 });
 
 liteSeek?.addEventListener("pointerdown", (event) => {
@@ -521,13 +613,16 @@ lite?.addEventListener("click", (event) => {
 });
 lite?.addEventListener("close", () => {
   gallery = [];
+  liteLandscape = false;
   lite.classList.remove("is-video", "is-image");
   resetLiteVideo();
   exitFilmMode();
+  syncFsButton();
   if (liteImg) {
     liteImg.removeAttribute("src");
     liteImg.alt = "";
   }
+  restoreLiteScroll();
   resumePageVideo();
 });
 
@@ -535,11 +630,28 @@ document.addEventListener("fullscreenchange", () => {
   if (liteSwitching) return;
   if (!document.fullscreenElement && lite?.open && filmOn) {
     filmOn = false;
-    lite.close();
+    lite.classList.remove("is-film");
+    try {
+      screen.orientation?.unlock?.();
+    } catch {
+      /* yok */
+    }
+    syncFsButton();
   }
 });
 
+liteVideo?.addEventListener("webkitendfullscreen", () => {
+  if (!lite?.open) return;
+  filmOn = false;
+  lite.classList.remove("is-film");
+  syncFsButton();
+});
+
 window.addEventListener("load", () => ScrollTrigger.refresh());
+window.addEventListener("orientationchange", () => {
+  window.setTimeout(syncFsButton, 200);
+});
+window.matchMedia("(max-width: 860px)").addEventListener("change", syncFsButton);
 
 const BRANDS = {
   extrablatt: {

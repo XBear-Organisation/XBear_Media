@@ -3,7 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function initGateway({ video, reducedMotion, onBlack, onLeaveBlack }) {
+export function initGateway({ video, reducedMotion, onBlack, onLeaveBlack, onReveal, onHide }) {
   if (!video) return { destroy() {} };
 
   video.pause();
@@ -44,6 +44,14 @@ export function initGateway({ video, reducedMotion, onBlack, onLeaveBlack }) {
   const disperseUi = document.querySelectorAll("[data-hero-disperse]");
   const nav = document.getElementById("nav");
   let inBlack = false;
+  let revealed = false;
+
+  const setReveal = (value) => {
+    if (value === revealed) return;
+    revealed = value;
+    if (value) onReveal?.();
+    else onHide?.();
+  };
 
   const setBlack = (value) => {
     pin?.classList.toggle("is-through", value);
@@ -57,6 +65,7 @@ export function initGateway({ video, reducedMotion, onBlack, onLeaveBlack }) {
     video.pause();
     video.currentTime = 0;
     video.classList.add("is-ready");
+    setReveal(true);
     setBlack(false);
     return { destroy() {} };
   }
@@ -110,7 +119,9 @@ export function initGateway({ video, reducedMotion, onBlack, onLeaveBlack }) {
       });
 
       nav?.classList.toggle("is-solid", p > 0.12);
-      setBlack(p >= 0.91);
+      // İş slaytı göz kaybolurken tıklanabilir olsun; tam siyah geçiş biraz sonra.
+      setReveal(p >= 0.72);
+      setBlack(p >= 0.88);
     },
   });
 
