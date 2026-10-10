@@ -1,5 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Prague Tatlıcı">
-  <rect width="240" height="240" fill="#0c0c0e"/>
-  <rect x="18" y="18" width="204" height="204" fill="none" stroke="#ede8df" stroke-opacity="0.28" stroke-width="1.5"/>
-  <text x="120" y="128" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="54" fill="#ede8df" letter-spacing="2">PR</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <circle cx="120" cy="120" r="112" fill="#F5F0E6" stroke="#6B3A3A" stroke-width="6"/>
+  <circle cx="120" cy="120" r="104" stroke="#8B5A3C" stroke-width="2" opacity="0.55"/>
+  <!-- churros -->
+  <g transform="translate(120 58)" stroke="#5C3328" stroke-width="1.4" fill="#C4A484">
+    <ellipse cx="-18" cy="0" rx="7" ry="22" transform="rotate(-18 -18 0)"/>
+    <ellipse cx="0" cy="-2" rx="7" ry="24"/>
+    <ellipse cx="18" cy="0" rx="7" ry="22" transform="rotate(18 18 0)"/>
+  </g>
+  <text x="120" y="118" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="600" fill="#4A2A35" letter-spacing="2">PRAGE</text>
+  <text x="120" y="142" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#5A4A42" letter-spacing="2.5">PRAG · CHURROS</text>
+  <line x1="78" y1="158" x2="108" y2="158" stroke="#4A2A35" stroke-width="1.2"/>
+  <path d="M120 152c2.2 2.4 6 6.2 0 12.5C114 158.2 117.8 154.4 120 152z" fill="none" stroke="#4A2A35" stroke-width="1.2"/>
+  <line x1="132" y1="158" x2="162" y2="158" stroke="#4A2A35" stroke-width="1.2"/>
 </svg>
